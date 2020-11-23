@@ -28,7 +28,7 @@
             
             $sql = "Select * from medico where id = :id";
             $sql = $con->prepare($sql);
-            $sql = bindValue(':id', $idPost, PDO::PARAM_INT);
+			$sql->bindValue(':id', $idPost, PDO::PARAM_INT);
             $sql -> execute();
 
             $resultado = $sql->fetchObject('medico');
