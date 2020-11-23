@@ -8,6 +8,8 @@
     require_once 'src/controller/ErroController.php';
     require_once 'src/model/medico.php';
 
+    require_once 'vendor/autoload.php';
+
     $template = file_get_contents('src/template/estrutura.html');
 
     ob_start();
