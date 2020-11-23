@@ -4,21 +4,33 @@
     {
         public function start($urlGet)
         {
-            if(isset($urlget['pagina'])){
+            $acao = 'index';
+            // var_dump($urlGet);
+            // var_dump($controller);
+            
+            if(isset($urlGet['pagina'])){
+                //uc first primeira letra maiuscula
                 $controller = ucfirst($urlGet['pagina'].'Controller');
+
             } else {
                 $controller = 'HomeController';
+                // var_dump($urlGet);
+                // var_dump($controller);
             }
-            
-            //uc first primeira letra maiuscula
-            $acao = 'index';
 
             if(!class_exists($controller)) 
             {
                 $controller = 'Erro_Controller';
             }
+            if(isset($urlGet['id'])&&$urlGet['id'] != null)
+            {
+                $id = $urlGet['id'];
+            } else
+            {
+                $id = null;
+            }
             //array vazio para n dar erros
-            call_user_func_array(array(new $controller, $acao), array());
+            call_user_func_array(array(new $controller, $acao), array('id'=> $id));
         }
     }
 ?>
