@@ -22,4 +22,20 @@
             return $resultado;
         }
 
+        public static function selectById($idPost)
+        {
+            $con = Connection::getCon();
+            
+            $sql = "Select * from medico where id = :id";
+            $sql = $con->prepare($sql);
+            $sql = bindValue(':id', $idPost, PDO::PARAM_INT);
+            $sql -> execute();
+
+            $resultado = $sql->fetchObject('medico');
+
+            if(!$resultado){
+                throw new Exception("Sem Registros");
+            }
+            return $resultado;
+        }
     }
