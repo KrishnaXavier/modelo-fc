@@ -6,7 +6,12 @@
 
     require_once 'src/controller/HomeController.php';
     require_once 'src/controller/ErroController.php';
+    require_once 'src/Controller/CadastroController.php';
+    require_once 'src/Controller/AgendamentoController.php';
+    require_once 'src/Controller/ListarController.php';
+
     require_once 'src/model/medico.php';
+    require_once 'src/model/agendamento.php';
 
     require_once 'vendor/autoload.php';
 
@@ -16,10 +21,11 @@
         $core = new Core;
         $core->start($_GET);
 
+
         $saida = ob_get_contents();
     ob_end_clean();
 
-
+    // var_dump($saida);
     $template_pronto = str_replace('{{area_dinamica}}', $saida, $template);
     echo $template_pronto;
 ?>
