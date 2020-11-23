@@ -4,9 +4,7 @@
     {
         public function index()
         {
-            try{
-                $medico = medico::selecionaTodos();
-                
+            try{                
                 $loader = new \Twig\Loader\FilesystemLoader('src/view');
                 $twig = new \Twig\Environment($loader);
                 $template = $twig->load('index.html');
