@@ -6,7 +6,18 @@
         {
             try{
                 $medico = medico::selecionaTodos();
-                var_dump($medico);
+                
+                $loader = new \Twig\Loader\FilesystemLoader('src/view');
+                $twig = new \Twig\Environment($loader);
+                $template = $twig->load('index.html');
+
+                $parametros = array();
+                // $parametros['nome'] = $
+
+                $conteudo = $template->render($parametros);
+
+                echo $conteudo;
+
             }
             catch(Exception $e){
                 echo $e->getMessage();
