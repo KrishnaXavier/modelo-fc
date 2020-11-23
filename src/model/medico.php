@@ -2,7 +2,7 @@
 
     class medico{
         //lembre que static acessa o método sem precisar criar instância da classe
-        public static function selecionaTodos()
+        public static function selectAll()
         {
             $con = Connection::getCon();
 
