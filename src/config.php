@@ -1,12 +1,16 @@
 <?php
-/*
-* É recomendado que a configuração da URL base, caso necessário, seja nesse arquivo.
-* Veja o exemplo:
-*/
+    abstract class Connection
+    {
+        public static $con;
 
-define("URL", "http://localhost/modelo-teste-facilconsulta.com.br/src/");
+        public static function getCon(){
+            //verificação de existencia unica do objeto PDO
+            if(self::$con==null){
+                //sell é utilizado qd o atributo é estatico, diferente do this
+                self::$con = new PDO('mysql: host= localhost; dbname=testefc;', 'root', '');
+            }
 
-/*
-* Exemplo de utilização da URL base no carregamento de arquivo .css:
-* <link rel="stylesheet" type="text/css" href="<?php echo URL;?>model/css/style.css">
-*/
+            return self::$con;
+
+        }
+    }
