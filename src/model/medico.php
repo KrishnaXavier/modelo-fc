@@ -10,7 +10,16 @@
             $sql = $con->prepare($sql);
             $sql -> execute();
 
-            var_dump($sql->fetchALL); 
+            // var_dump($sql->fetchALL);
+            
+            while ($row = $sql->fetchObject('medico')){
+                $resultado[] = $row;
+
+            }
+            if(!$resultado){
+                throw new Exception("Sem Registros");
+            }
+            return $resultado;
         }
 
     }

@@ -4,7 +4,13 @@
     {
         public function index()
         {
-            // echo 'teste';
-            medico::selecionaTodos();
+            try{
+                $medico = medico::selecionaTodos();
+                var_dump($medico);
+            }
+            catch(Exception $e){
+                echo $e->getMessage();
+            }         
+
         }
     }
