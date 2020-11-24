@@ -9,7 +9,6 @@
 			} else {
 				$metodo = 'index';
             }
-            
             if(isset($urlGet['pagina'])){
                 //uc first primeira letra maiuscula
                 $controller = ucfirst($urlGet['pagina'].'Controller');
@@ -20,7 +19,7 @@
 
             if(!class_exists($controller)) 
             {
-                $controller = 'Erro_Controller';
+                $controller = 'ErroController';
             }
             if(isset($urlGet['id'])&&$urlGet['id'] != null)
             {
@@ -29,7 +28,6 @@
             {
                 $id = null;
             }
-
             //array vazio para n dar erros
             call_user_func_array(array(new $controller, $metodo), array('id'=> $id));
         }
