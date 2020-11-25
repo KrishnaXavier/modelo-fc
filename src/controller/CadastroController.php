@@ -32,12 +32,14 @@
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('alter.html');
 
-            // echo $id;
             $medico = medico::selectById($id);
-            // var_dump($medico);
-
+            var_dump($medico);
             $parametros = array();
-            $parametros['alter'] = $medico;
+            $parametros['medico']= $medico;
+            $parametros['nome'] = $medico[0]->nome;
+            $parametros['id'] = $medico[0]->id;
+
+            // var_dump($parametros);
             $conteudo = $template->render($parametros);
             echo $conteudo;
         }

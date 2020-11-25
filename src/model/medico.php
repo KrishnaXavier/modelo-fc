@@ -56,6 +56,21 @@
             }
             return $resultado;
         }
+        public static function selectSenhaById($params){
+            $con = Connection::getCon();
+
+            $sql = "Select senha from medico where id = :id";
+            $sql = $con->prepare($sql);
+			$sql->bindValue(':id', $params, PDO::PARAM_INT);
+            $sql -> execute();
+            $resultado = $sql->fetchAll();
+            // var_dump($resultado);
+            
+            if(!$resultado){
+                throw new Exception("Sem Registros");
+            }
+            return $resultado;
+        }
         public static function selectById($id)
         {
             $con = Connection::getCon();
@@ -85,9 +100,9 @@
                 throw new Exception("Faltando Dados");
                 return false;
             }
-            $dadosForm['senha'] = password_hash($dadosForm['senha'], PASSWORD_DEFAULT);
+            $dadosForm['senha'] = md5($dadosForm['senha']);
 
-            var_dump($dadosForm);
+            // var_dump($dadosForm);
             $con = Connection::getCon();
 
             $sql = 'Insert into medico (email, nome, senha) values (:email, :nome, :senha)';
@@ -104,14 +119,36 @@
         public static function update($dadosForm)
         {
             // var_dump($dadosForm);
-            if(empty($dadosForm['nome'])||empty($dadosForm['senha'])||empty($dadosForm['id']))
+            if(empty($dadosForm['nome'])||empty($dadosForm['senha'])||empty($dadosForm['nova_senha'])||empty($dadosForm['nova_senha']))
             {
                 throw new Exception("Faltando Dados");
                 return false;
             }
-            $dadosForm['senha'] = password_hash($dadosForm['senha'], PASSWORD_DEFAULT);
-            var_dump($dadosForm);
+            $senha = medico::selectSenhaById($dadosForm['id']);
 
+
+            // var_dump(md5($dadosForm['senha']));
+            $parametros = array();
+
+            var_dump($senha[0]['senha']);
+            var_dump(md5($dadosForm['senha']));
+
+            if(md5($dadosForm['senha']) == $senha[0]['senha'])
+            {
+                // var_dump($dadosForm);
+                $passIsValid = true;
+            }
+
+
+            if($passIsValid==null){
+                throw new Exception("Senha antiga incorreta");
+
+                return false;
+            }
+            $dadosForm['senha'] = md5($dadosForm['nova_senha']);
+            // var_dump($dadosForm);
+
+            
             $con = Connection::getCon();
 
             $sql = 'Update medico set nome= :nome, senha= :senha, data_alteracao= CURRENT_TIMESTAMP where id= :id';
