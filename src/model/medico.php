@@ -41,7 +41,21 @@
             return $resultado;
 
         }
+        public static function selectNomeById($params){
+            $con = Connection::getCon();
 
+            $sql = "Select nome from medico where id = :id";
+            $sql = $con->prepare($sql);
+			$sql->bindValue(':id', $params, PDO::PARAM_INT);
+            $sql -> execute();
+
+            $resultado = $sql->fetchObject('agendamento');
+            
+            if(!$resultado){
+                throw new Exception("Sem Registros");
+            }
+            return $resultado;
+        }
         public static function selectById($id)
         {
             $con = Connection::getCon();

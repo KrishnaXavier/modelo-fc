@@ -37,7 +37,7 @@ class ListarController
             // var_dump($params);
             $lista_consultas = agendamento::selectById($params);
             // var_dump($lista_consultas);
-            // var_dump($parametros);
+            $nome = medico::selectNomeById($params);
             
             $loader = new \Twig\Loader\FilesystemLoader('src/view');
             $twig = new \Twig\Environment($loader);
@@ -45,14 +45,12 @@ class ListarController
 
             $parametros = array();    
             
-            // $parametros['id'] = $lista['id'];
             $parametros['lista_consultas'] =  $lista_consultas;
-            $parametros['id_medico'] = $lista_consultas;
-            // $parametros['email'] = $lista->email;
-            // $parametros['data_criacao'] = $lista->data_criacao;
-            // $parametros['horario_agendado'] = $lista->horario_agendado;
+            // var_dump($id);
+            $parametros['nome'] = $nome;
             // var_dump($parametros);
-            
+
+
             $conteudo = $template->render($parametros);
             echo $conteudo;
 

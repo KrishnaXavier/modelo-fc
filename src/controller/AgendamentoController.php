@@ -7,18 +7,17 @@ class AgendamentoController
         try {
 
             $horarios_consultas = agendamento::selectById($id);
-            var_dump($horarios_consultas);
-
+            // var_dump($horarios_consultas);
+            
             $loader = new \Twig\Loader\FilesystemLoader('src/view');
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('agendamento.html');
 
             $parametros = array();
-            // $parametros['id'] = $postagem->id;
-            // $parametros['titulo'] = $postagem->titulo;
-            // $parametros['conteudo'] = $postagem->conteudo;
-            // $parametros['comentarios'] = $postagem->comentarios;
-            //var_dump($colecPostagens);
+            $parametros['horarios_consultas'] = $horarios_consultas;
+
+            // var_dump($parametros);
+            
 
             $conteudo = $template->render($parametros);
             echo $conteudo;

@@ -44,6 +44,7 @@
             }
             return $resultado;
         }
+
         public static function insert($dadosForm)
         {
             // var_dump($dadosForm);
