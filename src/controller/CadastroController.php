@@ -38,9 +38,6 @@
 
             $parametros = array();
             $parametros['alter'] = $medico;
-            // $parametros['email'] =
-            // $parametros['nome'] =
-            // $parametros['senha'] =
             $conteudo = $template->render($parametros);
             echo $conteudo;
         }

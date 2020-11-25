@@ -79,11 +79,15 @@
         public static function insert($dadosForm)
         {
             // var_dump($dadosForm);
+
             if(empty($dadosForm['email']||empty($dadosForm['nome'])||empty($dadosForm['senha'])))
             {
                 throw new Exception("Faltando Dados");
                 return false;
             }
+            $dadosForm['senha'] = password_hash($dadosForm['senha'], PASSWORD_DEFAULT);
+
+            var_dump($dadosForm);
             $con = Connection::getCon();
 
             $sql = 'Insert into medico (email, nome, senha) values (:email, :nome, :senha)';
@@ -100,18 +104,20 @@
         public static function update($dadosForm)
         {
             // var_dump($dadosForm);
-            if(empty($dadosForm['email']||empty($dadosForm['nome'])||empty($dadosForm['senha'])||empty($dadosForm['id'])))
+            if(empty($dadosForm['nome'])||empty($dadosForm['senha'])||empty($dadosForm['id']))
             {
                 throw new Exception("Faltando Dados");
                 return false;
             }
+            $dadosForm['senha'] = password_hash($dadosForm['senha'], PASSWORD_DEFAULT);
+            var_dump($dadosForm);
+
             $con = Connection::getCon();
 
-            $sql = 'Update medico set email= :email, nome= :nome, senha= :senha, data_alteracao= CURRENT_TIMESTAMP where id= :id';
+            $sql = 'Update medico set nome= :nome, senha= :senha, data_alteracao= CURRENT_TIMESTAMP where id= :id';
             
             $sql = $con->prepare($sql);
-			$sql->bindValue(':email', $dadosForm['email']);
-			$sql->bindValue(':nome', $dadosForm['nome']);
+            $sql->bindValue(':nome', $dadosForm['nome']);
 			$sql->bindValue(':senha', $dadosForm['senha']);
 			$sql->bindValue(':id', $dadosForm['id']);
             $resultado = $sql -> execute();
