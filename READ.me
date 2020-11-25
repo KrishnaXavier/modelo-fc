@@ -1,2 +1,24 @@
+Não feitos
+
+2.1 - Quando o usuário clicar em um Horário deve ser feito o Agendamento do
+Horário, ou seja, o Horário vai se tornar ocupado/agendado (horario_agendado =
+1), ao fazer isso a página deve ser atualizada (recarregada);
+
+
 2.2 - A página de Listagem deve ser a inicial/index;
     Não fiz isso de acordo pois ao meu ver ficaria estranho entrar na pagina e não saber sobre o que ela se trata
+
+
+4 - Na página de Configurar Horários deve ser possível: adicionar um novo
+horário (data, hora e minuto) e remover um horário.
+
+4.1 - Ao adicionar um Horário ele deve ficar disponível (horario_agendado = 0);
+4.2 - Os Horários agendados (horario_agendado = 1) não podem ser removidos;
+
+5 - A ordenação dos Médicos na página de Listagem deve seguir as seguintes
+regras:
+5.1 - A ordenação dos Médicos deve ser pelo horário disponível mais próximo, ou
+seja, o Médico na 1ª posição deve ser com o horário disponível mais próximo e
+assim por diante;
+5.2 - Os Horários agendados (horario_agendado = 1) e que já passaram da data e
+hora atual não devem ser considerados na ordenação dos Médicos;
