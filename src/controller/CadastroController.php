@@ -46,12 +46,28 @@
 
 		public function insert()
 		{
-            medico::insert($_POST);
+            if(medico::insert($_POST))
+            {
+                $loader = new \Twig\Loader\FilesystemLoader('src/view');
+                $twig = new \Twig\Environment($loader);
+                $template = $twig->load('sucesso.html');
+                
+                $conteudo = $template->render();
+                echo $conteudo;
+            }
         }
         public function update()
 		{
             try{
-                medico::update($_POST);
+                if(medico::update($_POST))
+                {
+                    $loader = new \Twig\Loader\FilesystemLoader('src/view');
+                    $twig = new \Twig\Environment($loader);
+                    $template = $twig->load('sucesso.html');
+                    
+                    $conteudo = $template->render();
+                    echo $conteudo;
+                }
             } catch(Exception $e){
                 echo $e->getMessage();
             }
