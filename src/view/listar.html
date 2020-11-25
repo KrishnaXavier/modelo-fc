@@ -16,24 +16,19 @@
 </div>
 <div class="container">
     <div class="row">
-        <a href="http://localhost/modelo-fc/?pagina=post&id{{list.id}}"></a>
-        <div class="col-1">
+        <div class="col-2">
             <h4>ID MÉDICO</h4>
         </div>
-        <div class="col-1">
+        <div class="col-2">
             <h4>NOME</h4>
         </div>
         <div class="col-3">
             <h4>EMAIL</h4>
         </div>
-        <div class="col-1">
-            <h4>ID CONSULTA</h4>
-        </div>
-        <div class="col-2">
-            <h4>AGENDADO</h4>
-        </div>
         <div class="col-4">
             <h4>DATA CRIAÇÃO</h4>
+        </div>
+        <div class="col-1">
         </div>
 
     </div>
@@ -41,24 +36,20 @@
 {% for list in lista %}
 <div class="container">
     <div class="row">
-        <a href="http://localhost/modelo-fc/?pagina=post&id{{list.id}}"></a>
-        <div class="col-1">
+        <div class="col-2">
             <h4>{{list.id}}</h4>
         </div>
-        <div class="col-1">
+        <div class="col-2">
             <h4>{{list.nome}}</h4>
         </div>
         <div class="col-3">
             <h4>{{list.email}}</h4>
         </div>
-        <div class="col-1">
-            <h4>{{list.id_consulta}}</h4>
-        </div>
-        <div class="col-2">
-            <h4>{{list.horario_agendado}}</h4>
-        </div>
         <div class="col-4">
             <h4>{{list.data_criacao}}</h4>
+        </div>
+        <div class="col-1">
+            <a  href="http://localhost/modelo-fc/?pagina=listar&id={{list.id}}" class="btn btn-primary">VER</a>
         </div>
     </div>
 </div>

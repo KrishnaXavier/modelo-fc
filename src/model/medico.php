@@ -47,7 +47,7 @@
         {
             $con = Connection::getCon();
             
-            $sql = "Select m.id, m.nome, m.email, h.id, h.horario_agendado from medico m, horario h where m.id = :id";
+            $sql = "Select * from medico where m.id = :id";
             $sql = $con->prepare($sql);
 			$sql->bindValue(':id', $idPost, PDO::PARAM_INT);
             $sql -> execute();
@@ -56,6 +56,8 @@
 
             if(!$resultado){
                 throw new Exception("Sem Registros");
+            } else{
+                $resultado->consultas = agendamento::selectById($resultado->id);
             }
             return $resultado;
         }
