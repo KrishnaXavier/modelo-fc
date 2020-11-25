@@ -44,4 +44,25 @@
             }
             return $resultado;
         }
+        public static function insert($dadosForm)
+        {
+            // var_dump($dadosForm);
+            if(empty($dadosForm['id']||empty($dadosForm['data'])||empty($dadosForm['horario_agendado'])))
+            {
+                throw new Exception("Faltando Dados");
+                return false;
+            }
+            $con = Connection::getCon();
+
+            $sql = 'Insert into horario (id_medico, data_horario, horario_agendado) values (:id, :data, :horario_agendado)';
+            
+            $sql = $con->prepare($sql);
+			$sql->bindValue(':id', $dadosForm['id']);
+			$sql->bindValue(':data', $dadosForm['data']);
+			$sql->bindValue(':horario_agendado', $dadosForm['horario_agendado']);
+            $sql -> execute();
+
+            // var_dump($sql);
+
+        }
     }
