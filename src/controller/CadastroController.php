@@ -33,7 +33,7 @@
             $template = $twig->load('alter.html');
 
             $medico = medico::selectById($id);
-            var_dump($medico);
+            // var_dump($medico);
             $parametros = array();
             $parametros['medico']= $medico;
             $parametros['nome'] = $medico[0]->nome;
