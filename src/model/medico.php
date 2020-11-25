@@ -43,24 +43,25 @@
 
         }
 
-        public static function selectById($idPost)
-        {
-            $con = Connection::getCon();
+        // public static function selectById($idPost)
+        // {
+        //     $con = Connection::getCon();
             
-            $sql = "Select * from medico where m.id = :id";
-            $sql = $con->prepare($sql);
-			$sql->bindValue(':id', $idPost, PDO::PARAM_INT);
-            $sql -> execute();
+        //     $sql = "Select * from medico where m.id = :id";
+        //     $sql = $con->prepare($sql);
+		// 	$sql->bindValue(':id', $idPost, PDO::PARAM_INT);
+        //     $sql -> execute();
 
-            $resultado = $sql->fetchObject('medico');
+        //     $resultado = $sql->fetchObject('medico');
 
-            if(!$resultado){
-                throw new Exception("Sem Registros");
-            } else{
-                $resultado->consultas = agendamento::selectById($resultado->id);
-            }
-            return $resultado;
-        }
+        //     if(!$resultado){
+        //         throw new Exception("Sem Registros");
+        //     } else{
+        //         var_dump($resultado);
+        //         $resultado->consultas = agendamento::selectById($resultado->id);
+        //     }
+        //     return $resultado;
+        // }
         public static function insert($dadosForm)
         {
             var_dump($dadosForm);
@@ -82,25 +83,25 @@
             // var_dump($sql);
 
         }
-        public static function alter($dadosForm)
-        {
-            var_dump($dadosForm);
-            if(empty($dadosForm['email']||empty($dadosForm['nome'])||empty($dadosForm['senha'])))
-            {
-                throw new Exception("Faltando Dados");
-                return false;
-            }
-            $con = Connection::getCon();
+        // public static function alter($dadosForm)
+        // {
+        //     var_dump($dadosForm);
+        //     if(empty($dadosForm['email']||empty($dadosForm['nome'])||empty($dadosForm['senha'])))
+        //     {
+        //         throw new Exception("Faltando Dados");
+        //         return false;
+        //     }
+        //     $con = Connection::getCon();
 
-            $sql = 'Insert into medico (email, nome, senha) values (:email, :nome, :senha)';
+        //     $sql = 'Insert into medico (email, nome, senha) values (:email, :nome, :senha)';
             
-            $sql = $con->prepare($sql);
-			$sql->bindValue(':email', $dadosForm['email']);
-			$sql->bindValue(':nome', $dadosForm['nome']);
-			$sql->bindValue(':senha', $dadosForm['senha']);
-            $sql -> execute();
+        //     $sql = $con->prepare($sql);
+		// 	$sql->bindValue(':email', $dadosForm['email']);
+		// 	$sql->bindValue(':nome', $dadosForm['nome']);
+		// 	$sql->bindValue(':senha', $dadosForm['senha']);
+        //     $sql -> execute();
 
-            // var_dump($sql);
+        //     // var_dump($sql);
 
-        }
+        // }
     }

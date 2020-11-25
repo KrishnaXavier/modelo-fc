@@ -19,7 +19,7 @@
             if(!$resultado){
                 throw new Exception("Sem Registros");
             } else{
-                $resultado->medicos = medico::selectById($resultado->id);
+                $resultado->medicos = medico::selectById($resultado);
             }
             return $resultado;
         }
@@ -28,11 +28,9 @@
         {
             $con = Connection::getCon();
 
-            $id = $params;
-
-            $sql = "Select * from horario where id = :id";
+            $sql = "Select * from horario where id_medico = :id";
             $sql = $con->prepare($sql);
-			$sql->bindValue(':id', $idPost, PDO::PARAM_INT);
+			$sql->bindValue(':id', $params, PDO::PARAM_INT);
             $sql -> execute();
 
             $resultado = array();

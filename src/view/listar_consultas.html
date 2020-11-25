@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+                <h1>Lista das Consultas do Médico:</h1>
+        </div>
+        <div class="col-md-4">
+        </div>
+
+        <br>
+        <br>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+            <h4>ID</h4>
+        </div>
+        <div class="col-2">
+            <h4>AGENDADA</h4>
+        </div>
+        <div class="col-3">
+            <h4>HORÁRIO</h4>
+        </div>
+        <div class="col-3">
+            <h4>DATA CRIAÇÃO</h4>
+        </div>
+        <div class="col-3">
+            <h4>DATA ALTERAÇÃO</h4>
+        </div>
+
+    </div>
+</div>
+<hr>
+
+{% for list in lista_consultas %}
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+            <h4>{{list.id}}</h4>
+        </div>
+        <div class="col-2">
+            <h4>{{list.horario_agendado}}</h4>
+        </div>
+        <div class="col-3">
+            <h4>{{list.data_horario}}</h4>
+        </div>
+        <div class="col-3">
+            <h4>{{list.data_criacao}}</h4>
+        </div>
+        <div class="col-3">
+            <h4>{{list.data_alteracao}}</h4>
+        </div>
+    </div>
+</div>
+<hr>
+{% endfor %}
