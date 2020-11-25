@@ -114,6 +114,7 @@
             $sql -> execute();
 
             // var_dump($sql);
+            return true;
 
         }
         public static function update($dadosForm)
@@ -130,8 +131,8 @@
             // var_dump(md5($dadosForm['senha']));
             $parametros = array();
 
-            var_dump($senha[0]['senha']);
-            var_dump(md5($dadosForm['senha']));
+            // var_dump($senha[0]['senha']);
+            // var_dump(md5($dadosForm['senha']));
 
             if(md5($dadosForm['senha']) == $senha[0]['senha'])
             {
