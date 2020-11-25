@@ -38,33 +38,33 @@
             if(!$resultado){
                 throw new Exception("Sem Registros");
             }
-            // var_dump($resultado);
             return $resultado;
 
         }
 
-        // public static function selectById($idPost)
-        // {
-        //     $con = Connection::getCon();
-            
-        //     $sql = "Select * from medico where m.id = :id";
-        //     $sql = $con->prepare($sql);
-		// 	$sql->bindValue(':id', $idPost, PDO::PARAM_INT);
-        //     $sql -> execute();
+        public static function selectById($id)
+        {
+            $con = Connection::getCon();
 
-        //     $resultado = $sql->fetchObject('medico');
+            $sql = "Select * from medico where id = :id";
+            $sql = $con->prepare($sql);
+			$sql->bindValue(':id', $id, PDO::PARAM_INT);
+            $sql -> execute();
 
-        //     if(!$resultado){
-        //         throw new Exception("Sem Registros");
-        //     } else{
-        //         var_dump($resultado);
-        //         $resultado->consultas = agendamento::selectById($resultado->id);
-        //     }
-        //     return $resultado;
-        // }
+            $resultado = array();
+
+            while ($row = $sql->fetchObject('medico')){
+                $resultado[] = $row;
+
+            }
+            if(!$resultado){
+                throw new Exception("Sem Registros");
+            }
+            return $resultado;
+        }
         public static function insert($dadosForm)
         {
-            var_dump($dadosForm);
+            // var_dump($dadosForm);
             if(empty($dadosForm['email']||empty($dadosForm['nome'])||empty($dadosForm['senha'])))
             {
                 throw new Exception("Faltando Dados");
@@ -83,25 +83,29 @@
             // var_dump($sql);
 
         }
-        // public static function alter($dadosForm)
-        // {
-        //     var_dump($dadosForm);
-        //     if(empty($dadosForm['email']||empty($dadosForm['nome'])||empty($dadosForm['senha'])))
-        //     {
-        //         throw new Exception("Faltando Dados");
-        //         return false;
-        //     }
-        //     $con = Connection::getCon();
+        public static function update($dadosForm)
+        {
+            // var_dump($dadosForm);
+            if(empty($dadosForm['email']||empty($dadosForm['nome'])||empty($dadosForm['senha'])||empty($dadosForm['id'])))
+            {
+                throw new Exception("Faltando Dados");
+                return false;
+            }
+            $con = Connection::getCon();
 
-        //     $sql = 'Insert into medico (email, nome, senha) values (:email, :nome, :senha)';
+            $sql = 'Update medico set email= :email, nome= :nome, senha= :senha, data_alteracao= CURRENT_TIMESTAMP where id= :id';
             
-        //     $sql = $con->prepare($sql);
-		// 	$sql->bindValue(':email', $dadosForm['email']);
-		// 	$sql->bindValue(':nome', $dadosForm['nome']);
-		// 	$sql->bindValue(':senha', $dadosForm['senha']);
-        //     $sql -> execute();
+            $sql = $con->prepare($sql);
+			$sql->bindValue(':email', $dadosForm['email']);
+			$sql->bindValue(':nome', $dadosForm['nome']);
+			$sql->bindValue(':senha', $dadosForm['senha']);
+			$sql->bindValue(':id', $dadosForm['id']);
+            $resultado = $sql -> execute();
 
-        //     // var_dump($sql);
-
-        // }
+            if($resultado == 0){
+                throw new Exception("Falha na Alteração de Dados");
+                return false;
+            }
+            return true;
+        }
     }
