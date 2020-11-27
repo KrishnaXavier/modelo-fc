@@ -4,27 +4,25 @@ class AgendamentoController
 {
     public function index($id)
     {
-        try {
-
-            $horarios_consultas = agendamento::selectById($id);
-            // var_dump($horarios_consultas);
             
+            $horarios_consultas = agendamento::selectById($id);
+
             $loader = new \Twig\Loader\FilesystemLoader('src/view');
             $twig = new \Twig\Environment($loader);
             $template = $twig->load('agendamento.html');
-
             $parametros = array();
-            $parametros['horarios_consultas'] = $horarios_consultas;
-
-            // var_dump($parametros);
             
+            if($horarios_consultas) {
+                $parametros['horarios_consultas'] = $horarios_consultas;
+            } else {
+                $parametros['erro'] = $horarios_consultas;
+            }
+            var_dump($parametros);
 
             $conteudo = $template->render($parametros);
             echo $conteudo;
-            
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        
+
     }
     public function alter($params){
         try{

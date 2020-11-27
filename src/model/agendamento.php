@@ -40,7 +40,8 @@
 
             }
             if(!$resultado){
-                throw new Exception("Sem Registros");
+                // throw new Exception("Sem Registros");
+                return false;
             }
             return $resultado;
         }
