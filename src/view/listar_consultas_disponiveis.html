@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-9">
+            <h1>Lista das Consultas do Médico {{nome.nome}}</h1>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-5">
+            <h2>Adicionar horário de consulta</h2>
+        </div>
+
+        <div class="col-1">
+            <a href="http://localhost/modelo-fc/?pagina=agendamento&metodo=create&id={{id}}" class="btn btn-dark">➕</a>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+
+    </div>
+    <hr>
+    <br>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+            <h6>ID</h6>
+        </div>
+        <div class="col-1">
+            <h6>⬇️ ⬇️</h6>
+        </div>
+        <div class="col-2">
+            <h6>AGEN&shyDADA</h6>
+        </div>
+        <div class="col-2">
+            <h6>HORÁ&shyRIO</h6>
+        </div>
+        <div class="col-2">
+            <h6>DATA CRIA&shyÇÃO</h6>
+        </div>
+        <div class="col-2">
+            <h6>DATA ALTERA&shyÇÃO</h6>
+        </div>
+        <div class="col-1">
+            <h6>ALTE&shyRAR</h6>
+        </div>
+        <div class="col-1">
+            <h6>EXCLU&shyIR</h6>
+        </div>
+
+    </div>
+</div>
+<hr>
+{% if lista_consultas != false %}
+<div>
+    {% for list in lista_consultas %}
+    {% if list.horario_agendado == 0 %}
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <h6>{{list.id}}</h6>
+            </div>
+            {% if list.horario_agendado == 0 %}
+            <div class="col-1">
+                <a href="http://localhost/modelo-fc/?pagina=agendamento&metodo=agendar&id={{list.id}}"
+                    class="btn btn-dark">➕</a>
+            </div>
+            <div class="col-2">
+                <h6> Dispo&shynível </h6>
+            </div>
+            {% else %}
+            <div class="col-1">
+            </div>
+            <div class="col-2">
+                <h6>Indis&shyponível </h6>
+            </div>
+            {% endif %}
+            <div class="col-2">
+                <h6>{{list.data_horario}}</h6>
+            </div>
+            <div class="col-2">
+                <h6>{{list.data_criacao}}</h6>
+            </div>
+            <div class="col-2">
+                {% if list.data_alteracao == null %}
+                <h6>Nunca Alterado </h6>
+                {% else %}
+                <h6>{{list.data_alteracao}}</h6>
+                {% endif %}
+            </div>
+            {% if list.horario_agendado == 0 %}
+            <div class="col-1">
+                <a href="http://localhost/modelo-fc/?pagina=agendamento&metodo=alter&id={{list.id}}"
+                    class="btn btn-dark">➕</a>
+            </div>
+            <div class="col-1">
+                <a href="http://localhost/modelo-fc/?pagina=agendamento&metodo=delete&id={{list.id}}"
+                    class="btn btn-dark">🗑️</a>
+            </div>
+            {% else %}
+            <div class="col-2">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+</div>
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+        </div>
+        <div class="col-6">
+            <h1>SEM REGISTROS</h1>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>
+
+{% endif %}
+<hr>

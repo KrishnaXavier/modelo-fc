@@ -41,6 +41,23 @@
             return $resultado;
 
         }
+        public static function disponiveis()
+        {
+            $con = Connection::getCon();
+
+            $sql = "Select * from medico m, horario h where h.id_medico = m.id and h.horario_agendado = 0 and h.data_horario > now() order by h.data_horario";
+            $sql = $con->prepare($sql);
+            $sql -> execute();
+
+            while ($row = $sql->fetchObject('medico')){
+                $resultado[] = $row;
+            }
+            if(!$resultado){
+                throw new Exception("Sem Registros");
+            }
+            return $resultado;
+
+        }
         public static function selectNomeById($params){
             $con = Connection::getCon();
 

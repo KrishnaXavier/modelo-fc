@@ -45,6 +45,27 @@
             }
             return $resultado;
         }
+        public static function selectByIdMedicoDisponiveis($idMedico)
+        {
+            $con = Connection::getCon();
+
+            $sql = "Select * from horario where id_medico = :id and data_horario > now()";
+            $sql = $con->prepare($sql);
+			$sql->bindValue(':id', $idMedico, PDO::PARAM_INT);
+            $sql -> execute();
+
+            $resultado = array();
+
+            while ($row = $sql->fetchObject('agendamento')){
+                $resultado[] = $row;
+
+            }
+            if(!$resultado){
+                throw new Exception("Consulta inexistente");
+                return false;
+            }
+            return $resultado;
+        }
 
         public static function selectById($idHorario)
         {
