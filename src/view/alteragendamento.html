@@ -10,12 +10,15 @@
                         <input name="id" type="hidden" class="form-control">
                     </div>
                     <div class="form-group">
-                        <h4> ALTERAR HORÁRIO DO AGENDAMENTO DE ID: {{id}}?
-                        </h4>
+                        <h3> ALTERAR HORÁRIO DE AGENDAMENTO DO MÉDICO: {{nome_medico}} <br> ID MÉDICO:
+                            {{id_medico}} <br> ID AGENDAMENTO: {{id}}</h3>
                         <br>
-                        <label for="exampleInputPassword1">NOVO HORÁRIO PARA CONSULTA</label>
-                        <input value="{{data_horario}}" name="data" type="datetime-local" class="form-control"
-                            id="exampleInputPassword1">
+                        <label for="exampleInputPassword1">
+                            <h5>HORÁRIO ANTIGO <br> {{data_horario}}
+                                <hr> NOVO HORÁRIO PARA CONSULTA</h5>
+                        </label>
+
+                        <input name="data" type="datetime-local" class="form-control" id="exampleInputPassword1">
                     </div>
                     <div class="form-group">
                         <input name="horario_agendado" type="hidden" class="form-control" value=0>

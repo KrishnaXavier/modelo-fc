@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-1">
-            <a href="http://localhost/modelo-fc/?pagina=agendamento&id={{id}}" class="btn btn-dark">➕</a>
+            <a href="http://localhost/modelo-fc/?pagina=agendamento&metodo=create&id={{id}}" class="btn btn-dark">➕</a>
         </div>
 
         <div class="col-md-3">
@@ -65,6 +65,7 @@
 {% if lista_consultas != false %}
 <div>
     {% for list in lista_consultas %}
+    {% if list.horario_agendado == 0 %}
     <div class="container">
         <div class="row">
             <div class="col-1">
@@ -104,7 +105,7 @@
                     class="btn btn-dark">➕</a>
             </div>
             <div class="col-1">
-                <a href="http://localhost/modelo-fc/?pagina=agendamento&metodo=alter&id={{list.id}}"
+                <a href="http://localhost/modelo-fc/?pagina=agendamento&metodo=delete&id={{list.id}}"
                     class="btn btn-dark">🗑️</a>
             </div>
             {% else %}
@@ -113,6 +114,7 @@
             {% endif %}
         </div>
     </div>
+    {% endif %}
 </div>
 {% endfor %}
 </div>

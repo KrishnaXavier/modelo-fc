@@ -71,7 +71,7 @@
         public static function insert($dadosForm)
         {
             // var_dump($dadosForm);
-            if(empty($dadosForm['id']||empty($dadosForm['data'])||empty($dadosForm['horario_agendado'])))
+            if(empty($dadosForm['data']))
             {
                 throw new Exception("Faltando Dados");
                 return false;
@@ -89,6 +89,7 @@
             // var_dump($sql);
 
         }
+    
         public static function agendar($idHorario)
         {   
             // var_dump($idHorario);
@@ -105,6 +106,25 @@
             $sql = $con->prepare($sql);
 			$sql->bindValue(':id', $idHorario);
 			$sql->bindValue(':horario_agendado', 1);
+            $sql -> execute();
+
+            return true;
+        }
+        public static function deletar($id)
+        {   
+            // var_dump($idHorario);
+            if(empty($id))
+            {
+                throw new Exception("Faltando Dados");
+                return false;
+            }
+
+            $con = Connection::getCon();
+
+            $sql = 'Delete from horario where id= :id';
+            
+            $sql = $con->prepare($sql);
+			$sql->bindValue(':id', $id);
             $sql -> execute();
 
             return true;
