@@ -35,7 +35,7 @@ class ListarController
     {
         try{
             // var_dump($params);
-            $lista_consultas = agendamento::selectById($params);
+            $lista_consultas = agendamento::selectByIdMedico($params);
             // var_dump($lista_consultas);
             $nome = medico::selectNomeById($params);
             
@@ -47,6 +47,7 @@ class ListarController
             
             $parametros['lista_consultas'] =  $lista_consultas;
             // var_dump($id);
+            $parametros['id'] = $params;
             $parametros['nome'] = $nome;
             // var_dump($parametros);
 

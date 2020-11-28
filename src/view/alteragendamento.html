@@ -1,0 +1,30 @@
+<div class="container">
+    <br><br>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <div id="conteudo">
+                <form method="post" action="http://localhost/modelo-fc/?pagina=agendamento&metodo=update">
+                    <div class="form-group">
+                        <input name="id" type="hidden" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <h4> ALTERAR HORÁRIO DO AGENDAMENTO DE ID: {{id}}?
+                        </h4>
+                        <br>
+                        <label for="exampleInputPassword1">NOVO HORÁRIO PARA CONSULTA</label>
+                        <input value="{{data_horario}}" name="data" type="datetime-local" class="form-control"
+                            id="exampleInputPassword1">
+                    </div>
+                    <div class="form-group">
+                        <input name="horario_agendado" type="hidden" class="form-control" value=0>
+                    </div>
+                    <button type="submit" value="Cadastrar" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>
