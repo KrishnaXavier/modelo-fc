@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            <h1>Lista dos Médicos</h1>
+        </div>
+        <div class="col-md-4">
+        </div>
+
+        <br>
+        <br>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+            <h5>ID</h5>
+        </div>
+        <div class="col-2">
+            <h5>NOME</h5>
+        </div>
+        <div class="col-3">
+            <h5>EMAIL</h5>
+        </div>
+        <div class="col-4">
+            <h5>DATA CRIAÇÃO</h5>
+        </div>
+        <div class="col-1">
+        </div>
+
+    </div>
+</div>
+<hr>
+{% for list in lista %}
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+            <h5>{{list.id}}</h5>
+        </div>
+        <div class="col-2">
+            <h5>{{list.nome}}</h5>
+        </div>
+        <div class="col-3">
+            <h5>{{list.email}}</h5>
+        </div>
+        <div class="col-3">
+            <h5>{{list.data_criacao}}</h5>
+        </div>
+        <div class="col-1">
+            <a href="http://localhost/modelo-fc/?pagina=agendamento&metodo=create&id={{list.id}}"
+                class="btn btn-dark">➕</a> </div>
+        <div class="col-1">
+            <a href="http://localhost/modelo-fc/?pagina=cadastro&metodo=alter&id={{list.id}}"
+                class="btn btn-dark">✏️</a>
+        </div>
+        <div class="col-1">
+            <a href="http://localhost/modelo-fc/?pagina=listar&metodo=consulta&id={{list.id}}"
+                class="btn btn-primary">CONSULTAS</a>
+        </div>
+    </div>
+</div>
+<hr>
+{% endfor %}
